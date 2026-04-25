@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bully Crypto</title>
+<style>
+body{margin:0;background:#050505;color:#fff;font-family:-apple-system,BlinkMacSystemFont,Arial}.app{max-width:520px;margin:auto;padding-bottom:22px}.header{padding:18px 16px 12px;border-bottom:1px solid #1f1f1f;display:flex;align-items:center;gap:12px}.logo{width:42px;height:42px;object-fit:cover;border-radius:10px}.title{font-size:18px;font-weight:850}.sub{color:#888;font-size:12px;margin-top:2px;line-height:1.35}input{width:100%;padding:15px 16px;font-size:17px;border:none;border-bottom:1px solid #1f1f1f;background:#050505;color:white;box-sizing:border-box}.quick{display:flex;flex-wrap:wrap;gap:8px;padding:12px 16px;border-bottom:1px solid #1f1f1f}.quick button{flex:1 1 28%;padding:9px;border-radius:8px;border:1px solid #262626;background:#101010;color:white;font-weight:750}.tabs{display:flex;border-bottom:1px solid #1f1f1f}.tab{flex:1;padding:13px;text-align:center;color:#777;font-weight:750}.tab.active{color:#fff;border-bottom:2px solid #3bff39}.screen{display:none;padding:16px}.screen.active{display:block}.card{background:#101010;border:1px solid #1f1f1f;border-radius:14px;padding:16px;margin-bottom:12px}.label{font-size:11px;color:#777;font-weight:850;letter-spacing:.7px;text-transform:uppercase}.big{font-size:32px;font-weight:850;margin-top:4px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}.decision{font-size:46px;font-weight:950;margin-top:4px}.buy{color:#3bff39}.sell{color:#ff4d5d}.hold{color:#ffd60a}.watch{color:#5ee1ff}.caution{color:#ff9f0a}.small{color:#999;font-size:14px;line-height:1.45}.setupName{font-size:28px;font-weight:900;margin-top:4px}.bar{height:8px;background:#222;border-radius:99px;overflow:hidden;margin-top:10px}.fill{height:100%;background:#3bff39;width:0%}iframe{border-radius:14px}.pill{display:inline-block;margin-top:8px;padding:6px 9px;border-radius:999px;background:#1a1a1a;border:1px solid #292929;color:#aaa;font-size:12px;font-weight:800}.zone{font-size:18px;font-weight:850;margin-top:5px}.warnBox{border-color:#3bff39;background:linear-gradient(180deg,#101010,#071107)}
+
+/* ELITE POLISH OVERRIDES */
+body{background:radial-gradient(circle at 50% -10%,#142017 0%,#050606 42%,#000 100%)}
+.app{padding-top:20px}.brandTitle{font-size:30px;letter-spacing:5px}.brandSub{letter-spacing:4px;color:#7cff55}.mark{box-shadow:0 0 34px rgba(87,216,61,.24), inset 0 0 22px rgba(255,255,255,.03)}
+.card,.search,.currency,.tabs,.coin{background:linear-gradient(180deg,rgba(18,22,20,.92),rgba(6,8,7,.96));border-color:#29302d;box-shadow:0 14px 40px rgba(0,0,0,.34), inset 0 1px 0 rgba(255,255,255,.045)}
+.card{border-radius:18px}.searchRow{margin-bottom:14px}.coin{height:58px;border-radius:14px;transition:.16s ease}.coin:active,.tab:active{transform:scale(.97)}.coin.active{border-color:#66ff4d;box-shadow:0 0 0 1px rgba(102,255,77,.25),0 0 22px rgba(102,255,77,.18)}
+.tab{transition:.16s ease}.tab.active{background:linear-gradient(135deg,#1f651b,#64d945);box-shadow:0 12px 30px rgba(87,216,61,.23)}
+.price{font-size:50px}.sectionTitle{color:#7cff55}.setupName,.buy,.watch,.up{color:#7cff55}.badge{background:#152d13;color:#7cff55}.bar.fill{background:linear-gradient(90deg,#44b833,#7cff55)}
+.bottom{box-shadow:0 -18px 40px rgba(0,0,0,.45)}.centerLogo{box-shadow:0 0 28px rgba(87,216,61,.55), inset 0 0 18px rgba(87,216,61,.1)}
+input::placeholder{color:#6f7771}.small{color:#c1c7c2}.label,.statLabel,.planLabel{color:#8f9892}.decision{letter-spacing:-1px}
+@media(max-width:430px){.brandTitle{font-size:24px;letter-spacing:4px}.mark{width:52px;height:52px}.price{font-size:42px}.coins{grid-template-columns:repeat(4,1fr)}.coin{font-size:13px}.tabs{gap:5px}.tab{font-size:12px}.stats{grid-template-columns:repeat(2,1fr);gap:8px}.stat{border-right:0;border:1px solid var(--line);border-radius:12px}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="header">
+    <img src="logo.jpg" class="logo">
+    <div><div class="title">Crypto Foreman</div><div class="sub">Setup scanner: breakout, pullback, reversal</div></div>
+  </div>
+
+  <input id="ticker" placeholder="BTC, ETH, SOL, ZEC">
+
+  <div class="quick">
+    <button onclick="selectCoin('BTC')">BTC</button><button onclick="selectCoin('ETH')">ETH</button><button onclick="selectCoin('SOL')">SOL</button>
+    <button onclick="selectCoin('XRP')">XRP</button><button onclick="selectCoin('ZEC')">ZEC</button><button onclick="selectCoin('DOGE')">DOGE</button>
+    <button onclick="selectCoin('LTC')">LTC</button><button onclick="selectCoin('AVAX')">AVAX</button><button onclick="selectCoin('ADA')">ADA</button>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab(0)">Overview</div>
+    <div class="tab" onclick="switchTab(1)">Chart</div>
+    <div class="tab" onclick="switchTab(2)">Entry</div>
+    <div class="tab" onclick="switchTab(3)">Decision</div>
+  </div>
+
+  <div class="screen active">
+    <div class="card warnBox">
+      <div class="label">Price</div><div class="big" id="price">—</div><div class="small" id="move">—</div>
+    </div>
+    <div class="row">
+      <div class="card"><div class="label">Structure</div><div class="setupName" id="structure">—</div><div class="small" id="structureNote">Waiting</div></div>
+      <div class="card"><div class="label">Signal</div><div class="setupName" id="signal">—</div><div class="small" id="signalNote">Waiting</div></div>
+    </div>
+    <div class="card"><div class="label">Strength</div><div class="bar"><div class="fill" id="strengthBar"></div></div><div class="small" id="strengthText">—</div></div>
+  </div>
+
+  <div class="screen"><div id="chart"></div></div>
+
+  <div class="screen">
+    <div class="card warnBox"><div class="label">Best Setup</div><div class="setupName" id="setupType">—</div><div class="small" id="setupExplain">Type a coin.</div></div>
+    <div class="row">
+      <div class="card"><div class="label">Entry Zone</div><div class="zone" id="entryZone">—</div></div>
+      <div class="card"><div class="label">Stop</div><div class="zone" id="stopZone">—</div></div>
+    </div>
+    <div class="card"><div class="label">Target Area</div><div class="zone" id="targetZone">—</div><div class="small" id="entryRule">—</div></div>
+  </div>
+
+  <div class="screen">
+    <div class="card"><div class="label">System Read</div><div id="decision" class="decision">WAIT</div><div class="small" id="reason">Type or tap a coin.</div></div>
+    <div class="card"><div class="label">Rules</div><div class="small" id="rules">Breakout = enter after break + hold. Pullback = buy dip in uptrend. Reversal = wait for bounce + higher low.</div></div>
+  </div>
+</div>
+
+<script>
+let currentSymbol="";
+const screens=document.querySelectorAll('.screen');
+const tabs=document.querySelectorAll('.tab');
+function switchTab(i){screens.forEach(s=>s.classList.remove('active'));tabs.forEach(t=>t.classList.remove('active'));screens[i].classList.add('active');tabs[i].classList.add('active')}
+let timeout;document.getElementById('ticker').addEventListener('input',()=>{clearTimeout(timeout);timeout=setTimeout(run,300)});
+function selectCoin(sym){document.getElementById('ticker').value=sym;currentSymbol="";run()}
+const idMap={BTC:'bitcoin',ETH:'ethereum',SOL:'solana',XRP:'ripple',ADA:'cardano',DOGE:'dogecoin',ZEC:'zcash',LTC:'litecoin',AVAX:'avalanche-2'};
+function money(n){return '$'+Number(n).toLocaleString(undefined,{maximumFractionDigits:n>100?2:4})}
+async function run(){
+  const sym=document.getElementById('ticker').value.toUpperCase().trim();
+  if(!sym||sym===currentSymbol)return; currentSymbol=sym;
+  const id=idMap[sym]; if(!id){setError('Coin not in quick map yet.');return}
+  try{
+    const simple=await fetch(`https://api.coingecko.com/api/v3/simple/price?ids=${id}&vs_currencies=usd&include_24hr_change=true`).then(r=>r.json());
+    const market=await fetch(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=1`).then(r=>r.json());
+    const price=simple[id].usd;
+    const move=simple[id].usd_24h_change||0;
+    const prices=(market.prices||[]).map(p=>p[1]);
+    if(!prices.length)throw new Error('No chart data');
+    const high=Math.max(...prices), low=Math.min(...prices), first=prices[0];
+    const recent=prices.slice(-24); const recentHigh=Math.max(...recent), recentLow=Math.min(...recent);
+    const range=high-low || 1;
+    const pos=(price-low)/range;
+    const trend=move>1.25?'UP':move<-1.25?'DOWN':'RANGE';
+    const nearHigh=price>=high*0.985;
+    const offHigh=(high-price)/high;
+    const bounceFromLow=(price-low)/low;
+    let setup='NO SETUP', decision='HOLD', reason='No clean entry. Wait.', explain='Price is not at a useful entry zone.', entry=price, stop=low, target=high, strength=45;
+
+    if(nearHigh && move>1.25){
+      setup='BREAKOUT'; decision='WATCH'; reason='Breakout forming. Do not chase the first spike.'; explain='Wait for break above resistance, then a hold/retest.';
+      entry=high*1.002; stop=high*0.97; target=entry+(entry-stop)*2; strength=78;
+      if(move>4){decision='BUY'; reason='Strong breakout momentum, but prefer a retest entry.'; strength=88}
+    } else if(trend==='UP' && offHigh>0.025 && offHigh<0.12 && price>first){
+      setup='PULLBACK'; decision='WATCH'; reason='Uptrend pullback. Look for support hold.'; explain='Buy the dip only if price holds above the last higher low.';
+      entry=price; stop=recentLow*0.985; target=high; strength=72;
+      if(price>recentLow*1.015){decision='BUY'; reason='Pullback holding. Small entry possible if chart confirms.'; strength=82}
+    } else if(move< -2 && bounceFromLow>0.025){
+      setup='REVERSAL'; decision='WATCH'; reason='Possible reversal. Needs higher low confirmation.'; explain='Do not catch the knife. Wait for bounce, pullback, then higher low.';
+      entry=price; stop=low*0.98; target=entry+(entry-stop)*2; strength=66;
+    } else if(move<=-5){
+      setup='BREAKDOWN'; decision='SELL'; reason='Heavy downside pressure. Avoid new longs.'; explain='Structure is weak. Wait for stabilization before entry.';
+      entry=price; stop=recentHigh; target=low; strength=30;
+    } else if(move>0.75){
+      setup='RANGE / BUILDING'; decision='HOLD'; reason='Strength building, but no clean entry yet.'; explain='Needs breakout or pullback setup.'; strength=58;
+    }
+
+    const rr=(Math.abs(target-entry)/Math.abs(entry-stop || 1)).toFixed(2);
+    updateUI({sym,price,move,trend,setup,decision,reason,explain,entry,stop,target,rr,strength,high,low});
+  }catch(e){setError('Data failed. Try again.');}
+}
+function updateUI(d){
+  document.getElementById('price').textContent=money(d.price);
+  document.getElementById('move').textContent=d.move.toFixed(2)+'% over 24h';
+  document.getElementById('structure').textContent=d.trend;
+  document.getElementById('structureNote').textContent='24h range: '+money(d.low)+' — '+money(d.high);
+  document.getElementById('signal').textContent=d.decision;
+  document.getElementById('signal').className='setupName '+cls(d.decision);
+  document.getElementById('signalNote').textContent=d.reason;
+  document.getElementById('strengthBar').style.width=Math.max(5,Math.min(100,d.strength))+'%';
+  document.getElementById('strengthText').textContent=d.strength+'/100 setup strength';
+  document.getElementById('setupType').textContent=d.setup;
+  document.getElementById('setupExplain').textContent=d.explain;
+  document.getElementById('entryZone').textContent=money(d.entry);
+  document.getElementById('stopZone').textContent=money(d.stop);
+  document.getElementById('targetZone').textContent=money(d.target);
+  document.getElementById('entryRule').textContent='Estimated R/R: '+d.rr+' : 1. Confirm with chart before entry.';
+  const el=document.getElementById('decision'); el.textContent=d.decision; el.className='decision '+cls(d.decision);
+  document.getElementById('reason').textContent=d.reason;
+  document.getElementById('chart').innerHTML=`<iframe width="100%" height="420" src="https://s.tradingview.com/widgetembed/?symbol=BINANCE:${d.sym}USDT&interval=15&theme=dark" frameborder="0"></iframe>`;
+}
+function cls(decision){return decision==='BUY'?'buy':decision==='SELL'?'sell':decision==='WATCH'?'watch':decision==='CAUTION'?'caution':'hold'}
+function setError(msg){document.getElementById('reason').textContent=msg;document.getElementById('decision').textContent='WAIT'}
+</script>
+</body>
+</html>
